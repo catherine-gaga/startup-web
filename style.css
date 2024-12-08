@@ -1,0 +1,417 @@
+:root {
+    --primary-color: #00f0ff;
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+}
+
+/* 背景动画 */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        #000000,
+        #1a1a1a,
+        #002233,
+        #001a3d,
+        #1a1a1a,
+        #000000
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+/* 添加背景动画关键帧 */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 导航样式 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+}
+
+.menu-item {
+    cursor: pointer;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.menu-item:hover::after {
+    width: 100%;
+}
+
+/* 主要内容样式 */
+main {
+    padding-top: 100px;
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+}
+
+.hero-text h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3.5s steps(30, end);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #888;
+    margin-bottom: 3rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 2rem;
+}
+
+button {
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* 特性卡片区域 */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 4rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(0, 240, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: lightEffect 3s infinite;
+}
+
+@keyframes lightEffect {
+    0% {
+        transform: rotate(45deg) translateY(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateY(100%);
+    }
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    nav {
+        padding: 1.5rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .hero {
+        padding: 0 1.5rem;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+}
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* 联系表单区域样式 */
+.contact-section {
+    padding: 4rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    margin-top: 4rem;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-header p {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+/* Typeform iframe 样式优化 */
+[data-tf-live] {
+    height: 500px !important;
+    transition: opacity 0.3s ease;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 2rem 1rem;
+    }
+
+    .contact-header h2 {
+        font-size: 2rem;
+    }
+
+    .form-container {
+        padding: 1rem;
+    }
+
+    [data-tf-live] {
+        height: 600px !important;
+    }
+}
+
+/* 修改 Typeform 相关样式 */
+.typeform-section {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.typeform-trigger {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.typeform-trigger:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 240, 255, 0.4);
+}
+
+.typeform-container {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    width: 400px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: none;
+    animation: slideUp 0.3s ease;
+}
+
+.typeform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 240, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.typeform-header h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.close-typeform {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.close-typeform:hover {
+    transform: rotate(90deg);
+}
+
+[data-tf-live] {
+    height: 500px !important;
+    border: none !important;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .typeform-container {
+        width: 100%;
+        height: 100vh;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    
+    .typeform-trigger {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+} 
